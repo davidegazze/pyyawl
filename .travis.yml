@@ -23,7 +23,8 @@ deploy:
   provider: pypi
   distributions: sdist bdist_wheel
   user: "__token__"
-  password: pypi-AgEIcHlwaS5vcmcCJDNkMmI4MjNkLTRkNDUtNDc4ZS05Mzk2LTk3ZjUyNjM4ODA4MwACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgvAHUnkDRRgimTKf7Zr7ylAvsSIYRCQcXJ0RNzehwxRk
+  password:
+    secure: PLEASE_REPLACE_ME
   on:
     tags: true
     repo: fabiofumarola/pyyawl

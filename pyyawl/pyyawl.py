@@ -13,11 +13,15 @@ def execute(file, verbose):
 
 def execute_pipeline(workflow, verbose):
     from pyyawl import operators
+
+    assert len(registry) > 0, 'empty function registry'
+
+    for task in workflow.tasks:
+        assert task.operator in registry, f'missing operator {task.operator}'
+
     print('starting workflow', workflow.name)
-    print(registry)
     for task in tqdm(workflow.tasks):
-        if task.operator in registry:
-            registry[task.operator](verbose=verbose, **task.arguments)
+        registry[task.operator](verbose=verbose, **task.arguments)
 
 
 def generate():

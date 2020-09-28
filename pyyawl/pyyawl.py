@@ -2,13 +2,17 @@
 from pyyawl.namedregistry import registry
 from tqdm import tqdm
 from omegaconf import OmegaConf
+from pathlib import Path
 
 
-def execute(file, verbose):
+def execute(file_or_content, verbose):
     """Console script for pyyawl."""
-    workflow = OmegaConf.load(file)
-    execute_pipeline(workflow, verbose)
-    return 0
+    file_or_content = Path(file_or_content)
+    if file_or_content.exists():
+        workflow = OmegaConf.load(file_or_content)
+    else:
+        workflow = OmegaConf.create(str(file_or_content))
+    return execute_pipeline(workflow, verbose)
 
 
 def execute_pipeline(workflow, verbose):
@@ -20,8 +24,20 @@ def execute_pipeline(workflow, verbose):
         assert task.operator in registry, f'missing operator {task.operator}'
 
     print('starting workflow', workflow.name)
+    results = dict()
     for task in tqdm(workflow.tasks):
-        registry[task.operator](verbose=verbose, **task.arguments)
+        results[task.operator] = registry[task.operator](verbose=verbose,
+                                                         **task.arguments)
+    return results
+
+
+def show_registry(names=False):
+    from pyyawl import operators
+
+    if names:
+        return list(registry.keys())
+    else:
+        return registry
 
 
 def generate():

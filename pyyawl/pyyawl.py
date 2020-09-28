@@ -12,7 +12,9 @@ def execute(file, verbose):
 
 
 def execute_pipeline(workflow, verbose):
+    from pyyawl import operators
     print('starting workflow', workflow.name)
+    print(registry)
     for task in tqdm(workflow.tasks):
         if task.operator in registry:
             registry[task.operator](verbose=verbose, **task.arguments)

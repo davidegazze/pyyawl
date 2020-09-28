@@ -1,3 +1,5 @@
+__all__ = ['call_echo']
+
 import subprocess
 from ..namedregistry import export
 

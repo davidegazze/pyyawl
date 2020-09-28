@@ -194,6 +194,28 @@
 </pre></div>
 </div>
 </li>
+</ol>
+<p>Which generate a file like this one.</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test description</span>
+
+<span class="nt">tasks</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">operator</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">echo</span>
+    <span class="nt">arguments</span><span class="p">:</span>
+      <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ciao</span>
+  <span class="p p-Indicator">-</span> <span class="nt">operator</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">echo</span>
+    <span class="nt">arguments</span><span class="p">:</span>
+      <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mondo</span>
+  <span class="p p-Indicator">-</span> <span class="nt">operator</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">papermill</span>
+    <span class="nt">arguments</span><span class="p">:</span>
+      <span class="nt">input_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tests/notebooks/sum_test.ipynb</span>
+      <span class="nt">output_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tests/notebooks/sum_test_out.ipynb</span>
+      <span class="nt">parameters</span><span class="p">:</span>
+        <span class="nt">a</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8</span>
+        <span class="nt">b</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+</pre></div>
+</div>
+<ol class="arabic" start="2">
 <li><p>execute the workflow from the commandline:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ yawl --f my_workflow.yaml --verbose
 </pre></div>

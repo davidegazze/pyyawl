@@ -8,6 +8,11 @@ To use Yet Another Workflow Language for Python from command-line:
     
     $ yawl --generate > my_workflow.yaml
 
+
+Which generate a file like this one.
+    
+.. literalinclude:: example.yaml
+    :language: YAML
     
 2. execute the workflow from the commandline::
 

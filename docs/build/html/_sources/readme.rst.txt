@@ -30,8 +30,25 @@ Yet another simple workflow language for python
 Features
 --------
 
+Pyyawl is a simple yaml based workflow executor that let you define datascience pipelines using yaml.
+
 * execute worfkflow defined in yaml
 * simple and extensible
+
+
+Usage 
+-------
+
+To use Yet Another Workflow Language for Python from command-line:
+
+1. create a file .yaml file with the description of the workflow with its tasks::
+    
+    $ yawl --generate > my_workflow.yaml
+
+    
+2. execute the workflow from the commandline::
+
+    $ yawl --f my_workflow.yaml --verbose
 
 
 Credits

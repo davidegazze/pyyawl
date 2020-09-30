@@ -1,8 +1,6 @@
 __all__ = ['call_echo']
 
 import subprocess
-from pathlib import Path
-import shutil
 from ..namedregistry import export
 
 

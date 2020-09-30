@@ -18,20 +18,21 @@ def test_simpleworkflow_from_str():
 name: test
 description: test description
 
-tasks:
-  - operator: echo
+steps:
+  - name: echo
     arguments:
       value: yawl
-  - operator: echo
+  - name: echo
     arguments:
       value: world
-  - operator: papermill
+  - name: papermill
     arguments:
       input_path: tests/notebooks/sum_test.ipynb
       output_path: tests/notebooks/sum_test_out.ipynb
       parameters:
         a: 8
         b: 4
+        image_path: ./tests/notebooks/imgs/image_1.jpg
     """
     pyyawl.execute(content, True)
 
@@ -41,14 +42,14 @@ def test_simpleworkflow_mkdir():
 name: test
 description: test description
 
-tasks:
-  - operator: mkdir
+steps:
+  - name: mkdir
     arguments:
       path: test_dir
-  - operator: rmdir
+  - name: rmdir
     arguments:
       path: test_dir
-  - operator: ls
+  - name: ls
     arguments:
       path: .
     """
@@ -62,27 +63,29 @@ def test_simpleworkflow_missing_ops():
 name: test
 description: test description
 
-tasks:
-  - operator: echo2
+steps:
+  - name: echo2
     arguments:
       value: yawl
-  - operator: echo
+  - name: echo
     arguments:
       value: world
-  - operator: papermill
+  - name: papermill
     arguments:
       input_path: tests/notebooks/sum_test.ipynb
       output_path: tests/notebooks/sum_test_out.ipynb
       parameters:
         a: 8
         b: 4
+        image_path: ./tests/notebooks/imgs/image_1.jpg
     """
     pyyawl.execute(content, True)
 
 
 def test_show_registry():
     assert pyyawl.show_registry(names=True) == [
-        'echo', 'mkdir', 'rmdir', 'ls', 'papermill', 'python'
+        'echo', 'mkdir', 'rmdir', 'ls', 'papermill', 'python', 'dvc_add',
+        'dvc_push', 'dvc_pull'
     ]
 
 
@@ -91,8 +94,8 @@ def test_python_operator():
 name: test
 description: test description
 
-tasks:
-  - operator: python
+steps:
+  - name: python
     arguments:
       value: tests/scripts/script1.py
     """

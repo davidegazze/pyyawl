@@ -82,5 +82,18 @@ tasks:
 
 def test_show_registry():
     assert pyyawl.show_registry(names=True) == [
-        'echo', 'mkdir', 'rmdir', 'ls', 'papermill'
+        'echo', 'mkdir', 'rmdir', 'ls', 'papermill', 'python'
     ]
+
+
+def test_python_operator():
+    content = """
+name: test
+description: test description
+
+tasks:
+  - operator: python
+    arguments:
+      value: tests/scripts/script1.py
+    """
+    pyyawl.execute(content, True)

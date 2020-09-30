@@ -19,7 +19,7 @@ def main():
     elif args.generate:
         print(pyyawl.generate())
     else:
-        sys.exit(pyyawl.execute(args.f, args.verbose))
+        pyyawl.execute(args.f, args.verbose)
 
 
 if __name__ == "__main__":

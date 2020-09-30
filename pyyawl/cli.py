@@ -15,11 +15,17 @@ def main():
     args = parser.parse_args()
 
     if args.registry:
+        # Show operators
         print(pyyawl.show_registry(names=True))
     elif args.generate:
+        # Testing workflow
         print(pyyawl.generate())
+    elif args.f is not None:
+        # Execute
+        sys.exit(pyyawl.execute(args.f, args.verbose))
     else:
-        pyyawl.execute(args.f, args.verbose)
+        # Show help
+        parser.print_help()
 
 
 if __name__ == "__main__":

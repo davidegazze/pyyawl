@@ -59,4 +59,7 @@ tasks:
       parameters:
         a: 8
         b: 4
+  - operator: python
+    arguments:
+      value: tests/scripts/script1.py
 """

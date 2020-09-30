@@ -20,14 +20,17 @@ def execute_pipeline(workflow, verbose):
 
     assert len(registry) > 0, 'empty function registry'
 
-    for task in workflow.tasks:
-        assert task.operator in registry, f'missing operator {task.operator}'
+    if 'steps' not in workflow:
+        raise Exception('missing steps definition')
+
+    for step in workflow.steps:
+        assert step.name in registry, f'missing operator {step.name}'
 
     print('starting workflow', workflow.name)
     results = dict()
-    for task in tqdm(workflow.tasks):
-        results[task.operator] = registry[task.operator](verbose=verbose,
-                                                         **task.arguments)
+    for step in tqdm(workflow.steps):
+        results[step.name] = registry[step.name](verbose=verbose,
+                                                 **step.arguments)
     return results
 
 
@@ -45,21 +48,21 @@ def generate():
 name: test
 description: test description
 
-tasks:
-  - operator: echo
+steps:
+  - name: echo
     arguments:
       value: yawl
-  - operator: echo
+  - name: echo
     arguments:
       value: world
-  - operator: papermill
+  - name: papermill
     arguments:
       input_path: tests/notebooks/sum_test.ipynb
       output_path: tests/notebooks/sum_test_out.ipynb
       parameters:
         a: 8
         b: 4
-  - operator: python
+  - name: python
     arguments:
       value: tests/scripts/script1.py
 """

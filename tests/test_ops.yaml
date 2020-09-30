@@ -1,14 +1,14 @@
 name: test
 description: test description
 
-tasks:
-  - operator: echo
+steps:
+  - name: echo
     arguments:
       value: ciao
-  - operator: echo
+  - name: echo
     arguments:
       value: mondo
-  - operator: papermill
+  - name: papermill
     arguments:
       input_path: tests/notebooks/sum_test.ipynb
       output_path: tests/notebooks/sum_test_out.ipynb

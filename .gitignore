@@ -104,7 +104,7 @@ ENV/
 # IDE settings
 .vscode/
 
-test/notebooks/sum_test_out*.ipynb
+tests/notebooks/sum_test_out.ipynb
 my_workflow.yaml
 
 .DS_Store

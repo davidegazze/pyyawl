@@ -106,3 +106,5 @@ ENV/
 
 test/notebooks/sum_test_out*.ipynb
 my_workflow.yaml
+
+.DS_Store

@@ -32,6 +32,7 @@ tasks:
       parameters:
         a: 8
         b: 4
+        image_path: ./tests/notebooks/imgs/image_1.jpg
     """
     pyyawl.execute(content, True)
 
@@ -76,13 +77,15 @@ tasks:
       parameters:
         a: 8
         b: 4
+        image_path: ./tests/notebooks/imgs/image_1.jpg
     """
     pyyawl.execute(content, True)
 
 
 def test_show_registry():
     assert pyyawl.show_registry(names=True) == [
-        'echo', 'mkdir', 'rmdir', 'ls', 'papermill', 'python'
+        'echo', 'mkdir', 'rmdir', 'ls', 'papermill', 'python', 'dvc_add',
+        'dvc_push', 'dvc_pull'
     ]
 
 

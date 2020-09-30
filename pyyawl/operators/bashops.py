@@ -1,25 +1,28 @@
-__all__ = ['call_echo']
+__all__ = ['call_echo', 'call_mkdir', 'call_rmdir', 'call_ls']
 
-import subprocess
 from pathlib import Path
 import shutil
 from ..namedregistry import export
+from .baseops import subprocess_run
 
 
 @export(name='echo')
 def call_echo(value, verbose=False):
-    subprocess.run(['echo', 'hello', value])
+    result = subprocess_run(['echo', 'hello', value])
+    if verbose:
+        print(result)
+    return result
 
 
 @export(name='mkdir')
 def call_mkdir(path, verbose=False):
     path = Path(path)
-    path.mkdir(parents=True, exist_ok=True)
+    return path.mkdir(parents=True, exist_ok=True)
 
 
 @export(name='rmdir')
 def call_rmdir(path, force=False, verbose=False):
-    shutil.rmtree(path, True, None)
+    return shutil.rmtree(path, True, None)
 
 
 @export(name='ls')

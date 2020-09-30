@@ -15,3 +15,4 @@ tasks:
       parameters:
         a: 8
         b: 4
+        image_path: ./tests/notebooks/imgs/image_1.jpg
